@@ -356,6 +356,10 @@ kube_feature_gates: |-
 # Enable kubeadm experimental control plane
 kubeadm_control_plane: false
 
+# Set kubeadm ControlPlaneEndpoint (if no external load balancer is defined)
+kubeadm_control_plane_endpoint_address: {{ ip | default(fallback_ips[inventory_hostname]) }}
+kubeadm_control_plane_endpoint_port: {{ kube_apiserver_port }}
+
 # Local volume provisioner storage classes
 # Levarages Ansibles string to Python datatype casting. Otherwise the dict_key isn't substituted
 # see https://github.com/ansible/ansible/issues/17324
